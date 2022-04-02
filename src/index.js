@@ -1,14 +1,23 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
 import reportWebVitals from './reportWebVitals'
+import Routes from './routes'
+import store from './store'
+
+import './index.css'
 
 const root = createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 )
 
