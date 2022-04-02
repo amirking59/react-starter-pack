@@ -1,10 +1,9 @@
 import { AppBar, Toolbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Header from './Header/index.jsx'
+import { SET_MENU } from 'src/store/actions'
+import Header from './Header'
 import SideBar from './SideBar'
-
-import { SET_MENU } from '../../store/actions'
 
 function MainLayout() {
   const leftDrawerOpened = useSelector((state) => state.customization.opened)

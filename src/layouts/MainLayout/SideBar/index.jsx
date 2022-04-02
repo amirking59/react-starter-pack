@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from '@mui/material/styles'
 import { useMediaQuery } from '@mui/material'
 
-import { SET_MENU } from '../../../store/actions.js'
+import { SET_MENU } from 'src/store/actions.js'
 
 export default function TemporaryDrawer() {
   const theme = useTheme()
