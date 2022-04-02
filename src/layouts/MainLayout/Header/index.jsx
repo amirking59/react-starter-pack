@@ -7,7 +7,7 @@ import { Avatar, Box, ButtonBase } from '@mui/material'
 // assets
 import { IconMenu2 } from '@tabler/icons'
 
-function Header({ handleLeftDrawerToggle }) {
+function Header({ handleDrawerToggle }) {
   const theme = useTheme()
 
   return (
@@ -31,7 +31,7 @@ function Header({ handleLeftDrawerToggle }) {
               color: theme.palette.secondary.light
             }
           }}
-          onClick={handleLeftDrawerToggle}
+          onClick={handleDrawerToggle}
           color="inherit"
         >
           <IconMenu2 stroke={1.5} size="1.3rem" />
@@ -43,7 +43,7 @@ function Header({ handleLeftDrawerToggle }) {
 
 Header.propTypes = {
   // eslint-disable-next-line react/require-default-props
-  handleLeftDrawerToggle: PropTypes.func
+  handleDrawerToggle: PropTypes.func
 }
 
 export default Header

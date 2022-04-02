@@ -2,7 +2,7 @@
 import * as actionTypes from './actions'
 
 export const initialState = {
-  opened: true
+  opened: false
 }
 
 // eslint-disable-next-line default-param-last

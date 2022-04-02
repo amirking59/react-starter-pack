@@ -1,7 +1,10 @@
 import { AppBar, Toolbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 
+// actions
 import { SET_MENU } from 'src/store/actions'
+
+// components
 import Header from './Header'
 import SideBar from './SideBar'
 
@@ -26,7 +29,7 @@ function MainLayout() {
         }}
       >
         <Toolbar>
-          <Header handleLeftDrawerToggle={handleDrawerToggle} />
+          <Header handleDrawerToggle={handleDrawerToggle} />
         </Toolbar>
       </AppBar>
 
