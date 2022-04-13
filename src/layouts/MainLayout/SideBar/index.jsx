@@ -1,45 +1,121 @@
-import { useDispatch, useSelector } from 'react-redux'
-
-// material-ui
-import { useTheme } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
+import MuiDrawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import Divider from '@mui/material/Divider'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import MailIcon from '@mui/icons-material/Mail'
+import { useSelector } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
-import Drawer from '@mui/material/Drawer'
 
-// actions
-import { SET_MENU } from 'src/store/actions.js'
+const drawerWidth = 240
 
-// components
-import MenuList from './MenuList'
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen
+  }),
+  overflowX: 'hidden',
+  [theme.breakpoints.down('sm')]: {
+    top: '56px'
+  },
+  top: '64px'
+})
 
-export default function TemporaryDrawer() {
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`
+  },
+  [theme.breakpoints.down('sm')]: {
+    top: '56px'
+  },
+  top: '64px'
+})
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    top: '60px',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme)
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme)
+    })
+  })
+)
+
+export default function MiniDrawer() {
+  const leftDrawerOpened = useSelector((state) => state.customization.opened)
   const theme = useTheme()
-  const open = useSelector((state) => state.customization.opened)
 
-  const matchUpMd = useMediaQuery(theme.breakpoints.up('md'))
   const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
-  const dispatch = useDispatch()
 
-  const handleDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !open })
-  }
+  const open = matchUpLg || leftDrawerOpened
 
   return (
-    <div>
-      <Drawer
-        variant={matchUpMd ? 'persistent' : 'temporary'}
-        anchor="left"
-        open={matchUpLg ? true : open}
-        onClose={handleDrawerToggle}
-        sx={{
-          '& .MuiDrawer-paper': {
-            [theme.breakpoints.up('md')]: {
-              top: '64px'
-            }
-          }
-        }}
-      >
-        <MenuList />
-      </Drawer>
-    </div>
+    <Drawer variant="permanent" open={open}>
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItemButton
+            key={text}
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 2.5
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                justifyContent: 'center'
+              }}
+            >
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItemButton
+            key={text}
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 2.5
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                justifyContent: 'center'
+              }}
+            >
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        ))}
+      </List>
+    </Drawer>
   )
 }
