@@ -2,7 +2,9 @@ import PropTypes from 'prop-types'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Avatar, Box, ButtonBase } from '@mui/material'
+import {
+  Avatar, Box, ButtonBase, useMediaQuery
+} from '@mui/material'
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
@@ -10,7 +12,9 @@ import { IconMenu2 } from '@tabler/icons'
 function Header({ handleDrawerToggle }) {
   const theme = useTheme()
 
-  return (
+  const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
+
+  return !matchUpLg && (
     <Box
       sx={{
         width: 228,

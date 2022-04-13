@@ -1,10 +1,9 @@
-import Drawer from '@mui/material/Drawer'
-
 import { useDispatch, useSelector } from 'react-redux'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
 import { useMediaQuery } from '@mui/material'
+import Drawer from '@mui/material/Drawer'
 
 // actions
 import { SET_MENU } from 'src/store/actions.js'
@@ -17,6 +16,7 @@ export default function TemporaryDrawer() {
   const open = useSelector((state) => state.customization.opened)
 
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'))
+  const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
   const dispatch = useDispatch()
 
   const handleDrawerToggle = () => {
@@ -28,7 +28,7 @@ export default function TemporaryDrawer() {
       <Drawer
         variant={matchUpMd ? 'persistent' : 'temporary'}
         anchor="left"
-        open={open}
+        open={matchUpLg ? true : open}
         onClose={handleDrawerToggle}
         sx={{
           '& .MuiDrawer-paper': {
