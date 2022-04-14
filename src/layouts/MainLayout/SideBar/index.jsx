@@ -5,6 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@mui/material'
 
 import { SET_MENU_ITEM } from 'src/store/actions.js'
@@ -77,11 +78,13 @@ export default function MiniDrawer() {
   return (
     <Drawer variant="permanent" open={open}>
       <List>
-        {menuItems.map((item, index) => (
+        {menuItems.map((item) => (
           <ListItemButton
-            selected={selectedItem === index}
+            component={Link}
+            to={item.route}
+            selected={selectedItem === item.name}
             key={item.title}
-            onClick={() => handleSelectItem(index)}
+            onClick={() => handleSelectItem(item.name)}
             sx={{
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
@@ -96,7 +99,7 @@ export default function MiniDrawer() {
               sx={{
                 minWidth: 0,
                 mr: open ? 3 : 'auto',
-                color: selectedItem === index ? 'white' : 'initial',
+                color: selectedItem === item.name ? 'white' : 'initial',
                 justifyContent: 'center'
               }}
             >

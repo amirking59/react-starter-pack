@@ -3,7 +3,7 @@ import * as actionTypes from './actions'
 
 export const initialState = {
   opened: false,
-  selected: 0
+  selected: 'home'
 }
 
 // eslint-disable-next-line default-param-last
