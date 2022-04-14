@@ -1,14 +1,14 @@
 import { styled, useTheme } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
-import Divider from '@mui/material/Divider'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
+
+import { SET_MENU_ITEM } from 'src/store/actions.js'
+import menuItems from './menuItems.js'
 
 const drawerWidth = 240
 
@@ -60,8 +60,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 )
 
 export default function MiniDrawer() {
-  const leftDrawerOpened = useSelector((state) => state.customization.opened)
   const theme = useTheme()
+  const dispatch = useDispatch()
+
+  const leftDrawerOpened = useSelector((state) => state.customization.opened)
+  const selectedItem = useSelector((state) => state.customization.selected)
+
+  const handleSelectItem = (id) => {
+    dispatch({ type: SET_MENU_ITEM, selected: id })
+  }
 
   const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
 
@@ -70,12 +77,18 @@ export default function MiniDrawer() {
   return (
     <Drawer variant="permanent" open={open}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {menuItems.map((item, index) => (
           <ListItemButton
-            key={text}
+            selected={selectedItem === index}
+            key={item.title}
+            onClick={() => handleSelectItem(index)}
             sx={{
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
+              '&.Mui-selected, &.Mui-selected:hover': {
+                background: theme.palette.secondary.light,
+                color: 'white'
+              },
               px: 2.5
             }}
           >
@@ -83,36 +96,13 @@ export default function MiniDrawer() {
               sx={{
                 minWidth: 0,
                 mr: open ? 3 : 'auto',
+                color: selectedItem === index ? 'white' : 'initial',
                 justifyContent: 'center'
               }}
             >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {item.icon}
             </ListItemIcon>
-            <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItemButton
-            key={text}
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center'
-              }}
-            >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+            <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
         ))}
       </List>

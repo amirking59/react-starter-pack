@@ -2,7 +2,8 @@
 import * as actionTypes from './actions'
 
 export const initialState = {
-  opened: false
+  opened: false,
+  selected: 0
 }
 
 // eslint-disable-next-line default-param-last
@@ -12,6 +13,11 @@ const customizationReducer = (state = initialState, action) => {
       return {
         ...state,
         opened: action.opened
+      }
+    case actionTypes.SET_MENU_ITEM:
+      return {
+        ...state,
+        selected: action.selected
       }
     default:
       return state
