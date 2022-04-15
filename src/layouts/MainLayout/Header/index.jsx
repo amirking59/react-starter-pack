@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // material-ui
 import { useTheme } from '@mui/material/styles'
 import {
-  Avatar, Box, ButtonBase, useMediaQuery, Typography
+  Avatar, Box, ButtonBase, Typography
 } from '@mui/material'
 
 // assets
@@ -12,11 +12,8 @@ import { IconMenu2 } from '@tabler/icons'
 function Header({ handleDrawerToggle }) {
   const theme = useTheme()
 
-  const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
-
   return (
     <>
-      {!matchUpLg && (
       <Box
         sx={{
           marginRight: '40px',
@@ -44,7 +41,6 @@ function Header({ handleDrawerToggle }) {
           </Avatar>
         </ButtonBase>
       </Box>
-      )}
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>

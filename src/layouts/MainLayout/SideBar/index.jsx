@@ -1,14 +1,9 @@
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { useMediaQuery } from '@mui/material'
+import { useSelector } from 'react-redux'
+import Item from './Item'
 
-import { SET_MENU_ITEM } from 'src/store/actions.js'
 import menuItems from './menuItems.js'
 
 const drawerWidth = 240
@@ -34,7 +29,7 @@ const closedMixin = (theme) => ({
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`
+    width: `calc(${theme.spacing(10)} + 1px)`
   },
   [theme.breakpoints.down('sm')]: {
     top: '56px'
@@ -61,52 +56,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 )
 
 export default function MiniDrawer() {
-  const theme = useTheme()
-  const dispatch = useDispatch()
-
   const leftDrawerOpened = useSelector((state) => state.customization.opened)
-  const selectedItem = useSelector((state) => state.customization.selected)
-
-  const handleSelectItem = (id) => {
-    dispatch({ type: SET_MENU_ITEM, selected: id })
-  }
-
-  const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
-
-  const open = matchUpLg || leftDrawerOpened
 
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer variant="permanent" open={leftDrawerOpened}>
       <List>
         {menuItems.map((item, index) => (
-          <ListItemButton
-            component={Link}
-            to={item.route}
-            selected={selectedItem === index}
-            key={item.title}
-            onClick={() => handleSelectItem(index)}
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              '&.Mui-selected, &.Mui-selected:hover': {
-                background: theme.palette.secondary.light,
-                color: 'white'
-              },
-              px: 2.5
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                color: selectedItem === index ? 'white' : 'initial',
-                justifyContent: 'center'
-              }}
-            >
-              {item.icon}
-            </ListItemIcon>
-            <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
+          <Item item={item} key={item.name} index={index} />
         ))}
       </List>
     </Drawer>
