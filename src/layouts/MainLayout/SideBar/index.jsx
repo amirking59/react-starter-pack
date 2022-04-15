@@ -78,13 +78,13 @@ export default function MiniDrawer() {
   return (
     <Drawer variant="permanent" open={open}>
       <List>
-        {menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <ListItemButton
             component={Link}
             to={item.route}
-            selected={selectedItem === item.name}
+            selected={selectedItem === index}
             key={item.title}
-            onClick={() => handleSelectItem(item.name)}
+            onClick={() => handleSelectItem(index)}
             sx={{
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
@@ -99,7 +99,7 @@ export default function MiniDrawer() {
               sx={{
                 minWidth: 0,
                 mr: open ? 3 : 'auto',
-                color: selectedItem === item.name ? 'white' : 'initial',
+                color: selectedItem === index ? 'white' : 'initial',
                 justifyContent: 'center'
               }}
             >
