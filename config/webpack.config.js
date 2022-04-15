@@ -103,7 +103,7 @@ module.exports = function (webpackEnv) {
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      isEnvDevelopment && require.resolve('style-loader'),
+      isEnvDevelopment && require.resolve('style-loadable'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
@@ -113,14 +113,14 @@ module.exports = function (webpackEnv) {
           : {}
       },
       {
-        loader: require.resolve('css-loader'),
+        loader: require.resolve('css-loadable'),
         options: cssOptions
       },
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
         // package.json
-        loader: require.resolve('postcss-loader'),
+        loader: require.resolve('postcss-loadable'),
         options: {
           postcssOptions: {
             // Necessary for external CSS imports to work
@@ -165,7 +165,7 @@ module.exports = function (webpackEnv) {
     if (preProcessor) {
       loaders.push(
         {
-          loader: require.resolve('resolve-url-loader'),
+          loader: require.resolve('resolve-url-loadable'),
           options: {
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
             root: paths.appSrc
@@ -336,12 +336,12 @@ module.exports = function (webpackEnv) {
           enforce: 'pre',
           exclude: /@babel(?:\/|\\{1,2})runtime/,
           test: /\.(js|mjs|jsx|ts|tsx|css)$/,
-          loader: require.resolve('source-map-loader')
+          loader: require.resolve('source-map-loadable')
         },
         {
           // "oneOf" will traverse all following loaders until one will
-          // match the requirements. When no loader matches it will fall
-          // back to the "file" loader at the end of the loader list.
+          // match the requirements. When no loadable matches it will fall
+          // back to the "file" loadable at the end of the loadable list.
           oneOf: [
             // TODO: Merge this config once `image/avif` is in the mime-db
             // https://github.com/jshttp/mime-db
@@ -355,7 +355,7 @@ module.exports = function (webpackEnv) {
                 }
               }
             },
-            // "url" loader works like "file" loader except that it embeds assets
+            // "url" loadable works like "file" loadable except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
@@ -383,7 +383,7 @@ module.exports = function (webpackEnv) {
                   }
                 },
                 {
-                  loader: require.resolve('file-loader'),
+                  loader: require.resolve('file-loadable'),
                   options: {
                     name: 'static/media/[name].[hash].[ext]'
                   }
@@ -398,7 +398,7 @@ module.exports = function (webpackEnv) {
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
-              loader: require.resolve('babel-loader'),
+              loader: require.resolve('babel-loadable'),
               options: {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
@@ -417,8 +417,8 @@ module.exports = function (webpackEnv) {
                     && shouldUseReactRefresh
                     && require.resolve('react-refresh/babel')
                 ].filter(Boolean),
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // This is a feature of `babel-loadable` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loadable/
                 // directory for faster rebuilds.
                 cacheDirectory: true,
                 // See #6846 for context on why cacheCompression is disabled
@@ -431,7 +431,7 @@ module.exports = function (webpackEnv) {
             {
               test: /\.(js|mjs)$/,
               exclude: /@babel(?:\/|\\{1,2})runtime/,
-              loader: require.resolve('babel-loader'),
+              loader: require.resolve('babel-loadable'),
               options: {
                 babelrc: false,
                 configFile: false,
@@ -453,11 +453,11 @@ module.exports = function (webpackEnv) {
                 inputSourceMap: shouldUseSourceMap
               }
             },
-            // "postcss" loader applies autoprefixer to our CSS.
-            // "css" loader resolves paths in CSS and adds assets as dependencies.
-            // "style" loader turns CSS into JS modules that inject <style> tags.
+            // "postcss" loadable applies autoprefixer to our CSS.
+            // "css" loadable resolves paths in CSS and adds assets as dependencies.
+            // "style" loadable turns CSS into JS modules that inject <style> tags.
             // In production, we use MiniCSSExtractPlugin to extract that CSS
-            // to a file, but in development "style" loader enables hot editing
+            // to a file, but in development "style" loadable enables hot editing
             // of CSS.
             // By default we support CSS Modules with the extension .module.css
             {
@@ -509,7 +509,7 @@ module.exports = function (webpackEnv) {
                     mode: 'icss'
                   }
                 },
-                'sass-loader'
+                'sass-loadable'
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -532,24 +532,24 @@ module.exports = function (webpackEnv) {
                     getLocalIdent: getCSSModuleLocalIdent
                   }
                 },
-                'sass-loader'
+                'sass-loadable'
               )
             },
-            // "file" loader makes sure those assets get served by WebpackDevServer.
+            // "file" loadable makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
-            // This loader doesn't use a "test" so it will catch all modules
+            // This loadable doesn't use a "test" so it will catch all modules
             // that fall through the other loaders.
             {
-              // Exclude `js` files to keep "css" loader working as it injects
-              // its runtime that would otherwise be processed through "file" loader.
+              // Exclude `js` files to keep "css" loadable working as it injects
+              // its runtime that would otherwise be processed through "file" loadable.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
               exclude: [/^$/, /\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               type: 'asset/resource'
             }
-            // ** STOP ** Are you adding a new loader?
-            // Make sure to add the new loader(s) before the "file" loader.
+            // ** STOP ** Are you adding a new loadable?
+            // Make sure to add the new loadable(s) before the "file" loadable.
           ]
         }
       ].filter(Boolean)

@@ -2,7 +2,7 @@
 import * as actionTypes from './actions'
 
 export const initialState = {
-  opened: false,
+  opened: true,
   selected: 0
 }
 
