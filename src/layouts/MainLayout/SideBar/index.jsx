@@ -3,6 +3,7 @@ import MuiDrawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import { useSelector } from 'react-redux'
 import Item from './Item'
+import Collapse from './Collapse'
 
 import menuItems from './menuItems.js'
 
@@ -61,9 +62,12 @@ export default function MiniDrawer() {
   return (
     <Drawer variant="permanent" open={leftDrawerOpened}>
       <List>
-        {menuItems.map((item, index) => (
-          <Item item={item} key={item.name} index={index} />
-        ))}
+        {menuItems.map((item, index) => {
+          if (item.children) {
+            return <Collapse item={item} key={item.name} />
+          }
+          return <Item item={item} key={item.name} index={index} />
+        })}
       </List>
     </Drawer>
   )

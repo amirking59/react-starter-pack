@@ -13,12 +13,14 @@ export default [
     name: 'home',
     title: 'Home',
     route: '/home',
-    icon: <HomeIcon />
-  },
-  {
-    name: 'mail',
-    title: 'Mail',
-    route: '/mail',
-    icon: <InboxIcon />
+    icon: <HomeIcon />,
+    children: [
+      {
+        name: 'mail',
+        title: 'Mail',
+        route: '/mail',
+        icon: <InboxIcon />
+      }
+    ]
   }
 ]
