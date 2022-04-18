@@ -1,45 +1,74 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { styled } from '@mui/material/styles'
+import MuiDrawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import { useSelector } from 'react-redux'
+import Item from './Item'
+import Collapse from './Collapse'
 
-// material-ui
-import { useTheme } from '@mui/material/styles'
-import { useMediaQuery } from '@mui/material'
-import Drawer from '@mui/material/Drawer'
+import menuItems from './menuItems.js'
 
-// actions
-import { SET_MENU } from 'src/store/actions.js'
+const drawerWidth = 240
 
-// components
-import MenuList from './MenuList'
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen
+  }),
+  overflowX: 'hidden',
+  [theme.breakpoints.down('sm')]: {
+    top: '56px'
+  },
+  top: '64px'
+})
 
-export default function TemporaryDrawer() {
-  const theme = useTheme()
-  const open = useSelector((state) => state.customization.opened)
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(10)} + 1px)`
+  },
+  [theme.breakpoints.down('sm')]: {
+    top: '56px'
+  },
+  top: '64px'
+})
 
-  const matchUpMd = useMediaQuery(theme.breakpoints.up('md'))
-  const matchUpLg = useMediaQuery(theme.breakpoints.up('lg'))
-  const dispatch = useDispatch()
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    top: '60px',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme)
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme)
+    })
+  })
+)
 
-  const handleDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !open })
-  }
+export default function MiniDrawer() {
+  const leftDrawerOpened = useSelector((state) => state.customization.opened)
 
   return (
-    <div>
-      <Drawer
-        variant={matchUpMd ? 'persistent' : 'temporary'}
-        anchor="left"
-        open={matchUpLg ? true : open}
-        onClose={handleDrawerToggle}
-        sx={{
-          '& .MuiDrawer-paper': {
-            [theme.breakpoints.up('md')]: {
-              top: '64px'
-            }
+    <Drawer variant="permanent" open={leftDrawerOpened}>
+      <List>
+        {menuItems.map((item, index) => {
+          if (item.children) {
+            return <Collapse item={item} key={item.name} />
           }
-        }}
-      >
-        <MenuList />
-      </Drawer>
-    </div>
+          return <Item item={item} key={item.name} index={index} />
+        })}
+      </List>
+    </Drawer>
   )
 }
