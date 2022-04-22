@@ -8,7 +8,8 @@ import {
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
-import DarkMode from './DarkMode'
+// import DarkMode from './DarkMode'
+import ProfileButton from './ProfileButton'
 
 function Header({ handleDrawerToggle }) {
   const theme = useTheme()
@@ -28,11 +29,11 @@ function Header({ handleDrawerToggle }) {
               ...theme.typography.commonAvatar,
               ...theme.typography.mediumAvatar,
               transition: 'all .2s ease-in-out',
-              background: theme.palette.secondary.light,
-              color: theme.palette.secondary.dark,
+              background: theme.palette.primary.light,
+              color: theme.palette.primary.dark,
               '&:hover': {
-                background: theme.palette.secondary.dark,
-                color: theme.palette.secondary.light
+                background: theme.palette.primary.dark,
+                color: theme.palette.primary.light
               }
             }}
             onClick={handleDrawerToggle}
@@ -45,7 +46,8 @@ function Header({ handleDrawerToggle }) {
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>
-      <DarkMode />
+      <ProfileButton />
+      {/* <DarkMode /> */}
     </>
   )
 }
