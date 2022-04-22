@@ -8,6 +8,7 @@ import {
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
+import DarkMode from './DarkMode'
 
 function Header({ handleDrawerToggle }) {
   const theme = useTheme()
@@ -44,8 +45,8 @@ function Header({ handleDrawerToggle }) {
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>
+      <DarkMode />
     </>
-
   )
 }
 

@@ -1,13 +1,13 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
-import reportWebVitals from './reportWebVitals'
-import Routes from './routes'
-import store from './store'
-
+import store from 'src/store/index.js'
+import App from './App.jsx'
 import './index.css'
+import reportWebVitals from './reportWebVitals'
 
 const root = createRoot(document.getElementById('root'))
 
@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Routes />
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
