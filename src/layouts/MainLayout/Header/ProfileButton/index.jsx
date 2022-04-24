@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
+import ClickAwayListener from '@mui/base/ClickAwayListener'
 
 import { styled, useTheme } from '@mui/material/styles'
 import DarkMode from '../DarkMode'
@@ -49,20 +50,21 @@ function ProfileButton() {
         }
       }}
       title={(
-        <Stack divider={<Divider variant="middle" />} spacing={2}>
-          <Typography color={theme.palette.text.primary}>HELLO amir</Typography>
-          <Box
-            sx={{
-              borderRadius: '12px',
-              px: '12px',
-              py: '12px',
-              background: theme.palette.background.secondary.main
-            }}
-          >
-            <DarkMode />
-          </Box>
-
-        </Stack>
+        <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <Stack divider={<Divider variant="middle" />} spacing={2}>
+            <Typography color={theme.palette.text.primary}>HELLO amir</Typography>
+            <Box
+              sx={{
+                borderRadius: '12px',
+                px: '12px',
+                py: '12px',
+                background: theme.palette.background.secondary.main
+              }}
+            >
+              <DarkMode />
+            </Box>
+          </Stack>
+        </ClickAwayListener>
       )}
     >
       <Button onClick={() => setOpen(!open)} theme={theme}>
