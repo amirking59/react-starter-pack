@@ -11,7 +11,7 @@ import Box from '@mui/material/Box'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 
 import { styled, useTheme } from '@mui/material/styles'
-import DarkMode from '../DarkMode'
+import DarkMode from './DarkMode'
 
 const Button = styled(BaseButton)(({ theme }) => ({
   padding: '8px',
@@ -41,8 +41,8 @@ function ProfileButton() {
           sx: {
             boxShadow: 2,
             minWidth: '360px',
-            mr: '6px',
-            mt: '16px !important',
+            marginRight: '6px',
+            marginTop: '16px !important',
             borderRadius: '12px',
             padding: '8px 16px',
             background: theme.palette.background.secondary.light
@@ -56,8 +56,8 @@ function ProfileButton() {
             <Box
               sx={{
                 borderRadius: '12px',
-                px: '12px',
-                py: '12px',
+                paddingX: '12px',
+                paddingY: '12px',
                 background: theme.palette.background.secondary.main
               }}
             >

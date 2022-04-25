@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 import { useTheme } from '@mui/material/styles'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -11,12 +13,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import Collapse from '@mui/material/Collapse'
 import List from '@mui/material/List'
 
-import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import Item from '../Item'
-import ItemMini from '../ItemMini'
+import CollapseItem from './CollapseItem'
 
-function CollapseItem({ item }) {
+function CollapseMenu({ item }) {
   const theme = useTheme()
   const leftDrawerOpened = useSelector((state) => state.customization.opened)
   const [open, setOpen] = useState(false)
@@ -50,7 +50,7 @@ function CollapseItem({ item }) {
         title={(
           <>
             {
-              item.children.map((i) => (<ItemMini item={i} key={i.name} />))
+              item.children.map((i) => (<CollapseItem item={i} key={i.name} />))
             }
           </>
       )}
@@ -117,9 +117,9 @@ function CollapseItem({ item }) {
   )
 }
 
-CollapseItem.propTypes = {
+CollapseMenu.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   item: PropTypes.object.isRequired
 }
 
-export default CollapseItem
+export default CollapseMenu

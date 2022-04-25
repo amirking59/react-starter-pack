@@ -8,7 +8,6 @@ import {
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
-// import DarkMode from './DarkMode'
 import ProfileButton from './ProfileButton'
 
 function Header({ handleDrawerToggle }) {
