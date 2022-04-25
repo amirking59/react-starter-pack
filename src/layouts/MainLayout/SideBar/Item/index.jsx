@@ -28,10 +28,10 @@ function Item({ item }) {
       onClick={() => handleSelectItem(item.name)}
       sx={{
         minHeight: 48,
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
         justifyContent: leftDrawerOpened ? 'initial' : 'center',
         '&.Mui-selected, &.Mui-selected:hover': {
-          background: theme.palette.secondary.light,
+          background: theme.palette.primary.light,
           color: theme.palette.background.default
         },
         px: 2.5
@@ -43,7 +43,7 @@ function Item({ item }) {
           ml: '6px',
           mr: leftDrawerOpened ? 3 : 'auto',
           color: selectedItem === item.name ? theme.palette.background.default
-            : theme.palette.text.secondary,
+            : theme.palette.text.primary,
           justifyContent: 'center',
           [theme.breakpoints.down('sm')]: {
             ml: 0

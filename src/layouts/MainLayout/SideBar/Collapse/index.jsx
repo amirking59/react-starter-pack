@@ -33,7 +33,7 @@ function CollapseItem({ item }) {
           tooltip: {
             sx: {
               background: 'transparent',
-              border: `1px solid ${theme.palette.text.secondary}`,
+              border: `1px solid ${theme.palette.text.primary}`,
               borderLeft: 'none',
               marginLeft: '0 !important',
               marginTop: 0,
@@ -60,10 +60,10 @@ function CollapseItem({ item }) {
           onClick={toggleOpen}
           sx={{
             minHeight: 48,
-            color: theme.palette.text.secondary,
+            color: theme.palette.text.primary,
             justifyContent: leftDrawerOpened ? 'initial' : 'center',
             '&.Mui-selected, &.Mui-selected:hover': {
-              background: theme.palette.secondary.light,
+              background: theme.palette.primary.light,
               color: theme.palette.background.default
             },
             px: 2.5
@@ -72,7 +72,7 @@ function CollapseItem({ item }) {
           <ListItemIcon
             sx={{
               minWidth: 0,
-              color: theme.palette.text.secondary,
+              color: theme.palette.text.primary,
               ml: '6px',
               mr: leftDrawerOpened ? 3 : 'auto',
               justifyContent: 'center',
@@ -89,7 +89,7 @@ function CollapseItem({ item }) {
             <ArrowForwardIosIcon sx={{
               position: 'absolute',
               right: 8,
-              color: theme.palette.text.secondary,
+              color: theme.palette.text.primary,
               fontSize: '12px',
               [theme.breakpoints.down('sm')]: {
                 right: 3,
