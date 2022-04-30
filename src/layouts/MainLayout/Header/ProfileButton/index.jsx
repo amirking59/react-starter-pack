@@ -17,6 +17,7 @@ const Button = styled(BaseButton)(({ theme }) => ({
   padding: '8px',
   background: theme.palette.primary.light,
   borderRadius: '50000px',
+  marginRight: '8px',
 
   '&:hover': {
     '.MuiSvgIcon-root': {
@@ -39,12 +40,12 @@ function ProfileButton() {
       componentsProps={{
         tooltip: {
           sx: {
-            boxShadow: 2,
-            minWidth: '360px',
-            marginRight: '6px',
+            boxShadow: 1,
+            minWidth: '260px',
             marginTop: '16px !important',
+            marginRight: '-8px',
             borderRadius: '12px',
-            padding: '8px 16px',
+            padding: '12px 16px',
             background: theme.palette.background.secondary.light
           }
         }
