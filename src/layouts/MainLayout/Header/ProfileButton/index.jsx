@@ -40,19 +40,19 @@ function ProfileButton() {
       componentsProps={{
         tooltip: {
           sx: {
-            boxShadow: 1,
+            boxShadow: 7,
             minWidth: '260px',
-            marginTop: '16px !important',
-            marginRight: '-8px',
-            borderRadius: '12px',
-            padding: '12px 16px',
+            marginTop: '8px !important',
+            marginRight: '-12px',
+            borderRadius: '16px',
+            padding: '12px',
             background: theme.palette.background.secondary.light
           }
         }
       }}
       title={(
         <ClickAwayListener onClickAway={() => setOpen(false)}>
-          <Stack divider={<Divider variant="middle" />} spacing={2}>
+          <Stack divider={<Divider variant="middle" />} spacing={1.5}>
             <Typography color={theme.palette.text.primary}>HELLO amir</Typography>
             <Box
               sx={{
