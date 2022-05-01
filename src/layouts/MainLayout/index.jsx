@@ -15,27 +15,34 @@ import SideBar from './SideBar'
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   ...theme.typography.mainContent,
-  marginTop: '80px',
-  marginLeft: '20px',
-  width: 'calc(100% - 240px)',
+  background: theme.palette.background.main,
+  marginTop: '64px',
+  height: 'calc(100vh - 64px)',
+  paddingTop: '12px',
+  [theme.breakpoints.down('sm')]: {
+    marginTop: '56px',
+    height: 'calc(100vh - 56px)'
+  },
+  paddingLeft: '20px',
+  overflow: 'scroll',
+  overflowX: 'hidden',
+  borderRight: 'none',
+  borderTopLeftRadius: '24px',
   ...(!open && {
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+    transition: theme.transitions.create(['margin', 'width'], {
+      duration: 300
     }),
-    [theme.breakpoints.down('sm')]: {
-      marginRight: '10px'
-    }
+    width: 'calc(100% - 41px)'
   }),
   ...(open && {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
+    transition: theme.transitions.create(['margin', 'width'], {
+      duration: 300
     }),
     borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0
+    borderBottomRightRadius: 0,
+    width: 'calc(100% - 240px)'
   })
 }))
 
@@ -57,8 +64,8 @@ function MainLayout() {
         color="inherit"
         elevation={0}
         sx={{
-          borderBottom: 1,
-          borderColor: 'rgba(0, 0, 0, 0.12)'
+          border: 'none',
+          background: theme.palette.background.primary.main
         }}
       >
         <Toolbar>

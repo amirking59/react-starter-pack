@@ -26,7 +26,7 @@ function Item({ item }) {
       key={item.title}
       onClick={() => handleSelectItem(item.name)}
       sx={{
-        minHeight: 48,
+        height: 41,
         color: theme.palette.text.primary,
         '&.Mui-selected, &.Mui-selected:hover': {
           background: theme.palette.primary.light,
@@ -38,7 +38,7 @@ function Item({ item }) {
       <ListItemIcon
         sx={{
           minWidth: 0,
-          ml: '6px',
+          ml: '4px',
           mr: 3,
           color: selectedItem === item.name
             ? theme.palette.background.default : theme.palette.text.primary,

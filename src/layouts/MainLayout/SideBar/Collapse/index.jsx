@@ -35,7 +35,7 @@ function CollapseMenu({ item }) {
               background: 'transparent',
               border: `1px solid ${theme.palette.text.primary}`,
               borderLeft: 'none',
-              marginLeft: '0 !important',
+              marginLeft: '8px !important',
               marginTop: 0,
               textAlign: 'center',
               padding: '0 10px',
@@ -59,21 +59,22 @@ function CollapseMenu({ item }) {
           key={item.name}
           onClick={toggleOpen}
           sx={{
-            minHeight: 48,
+            height: 41,
+            borderRadius: '9000px',
             color: theme.palette.text.primary,
             justifyContent: leftDrawerOpened ? 'initial' : 'center',
             '&.Mui-selected, &.Mui-selected:hover': {
               background: theme.palette.primary.light,
               color: theme.palette.background.default
             },
-            px: 2.5
+            m: '8px'
           }}
         >
           <ListItemIcon
             sx={{
               minWidth: 0,
               color: theme.palette.text.primary,
-              ml: '6px',
+              ml: '4px',
               mr: leftDrawerOpened ? 3 : 'auto',
               justifyContent: 'center',
               [theme.breakpoints.down('sm')]: {
@@ -92,7 +93,7 @@ function CollapseMenu({ item }) {
               color: theme.palette.text.primary,
               fontSize: '12px',
               [theme.breakpoints.down('sm')]: {
-                right: 3,
+                right: '-2px',
                 fontSize: '10px'
               }
             }}
