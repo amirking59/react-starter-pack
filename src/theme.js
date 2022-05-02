@@ -15,7 +15,15 @@ export const lightTheme = createTheme({
         main: grey[300],
         light: grey[200]
       },
-      main: 'rgb(227, 242, 253)'
+      main: 'rgb(227, 242, 253)',
+      dark: 'white'
+    },
+
+    modal: {
+      background: {
+        main: 'white',
+        dark: 'rgb(227, 242, 253)'
+      }
     }
   }
 })
@@ -33,7 +41,14 @@ export const darkTheme = createTheme({
         main: grey[700],
         light: grey[600]
       },
-      main: 'rgb(26, 34, 63)'
+      main: 'rgb(26, 34, 63)',
+      dark: 'rgb(17, 25, 54)'
+    },
+    modal: {
+      background: {
+        main: 'rgb(26, 34, 63)',
+        dark: 'rgb(17, 25, 54)'
+      }
     }
   }
 })

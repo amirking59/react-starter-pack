@@ -46,7 +46,7 @@ function ProfileButton() {
             marginRight: '-12px',
             borderRadius: '16px',
             padding: '12px',
-            background: theme.palette.background.secondary.light
+            background: theme.palette.modal.background.main
           }
         }
       }}
@@ -59,7 +59,7 @@ function ProfileButton() {
                 borderRadius: '12px',
                 paddingX: '12px',
                 paddingY: '12px',
-                background: theme.palette.background.secondary.main
+                background: theme.palette.modal.background.dark
               }}
             >
               <DarkMode />

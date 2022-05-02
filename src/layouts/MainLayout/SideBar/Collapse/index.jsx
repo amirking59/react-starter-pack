@@ -32,8 +32,7 @@ function CollapseMenu({ item }) {
         componentsProps={{
           tooltip: {
             sx: {
-              background: 'transparent',
-              border: `1px solid ${theme.palette.text.primary}`,
+              background: theme.palette.background.primary.main,
               borderLeft: 'none',
               marginLeft: '8px !important',
               marginTop: 0,
@@ -41,7 +40,7 @@ function CollapseMenu({ item }) {
               padding: '0 10px',
               lineHeight: '36px',
               borderRadius: '0 2px 2px 0',
-              width: '240px',
+              width: '200px',
               minHeight: '36px'
             }
           }
