@@ -8,6 +8,7 @@ import {
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
+import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined'
 import ProfileButton from './ProfileButton'
 
 function Header({ handleDrawerToggle }) {
@@ -40,6 +41,11 @@ function Header({ handleDrawerToggle }) {
           </Avatar>
         </ButtonBase>
       </Box>
+      <CloudOutlinedIcon sx={{
+        fontSize: '32px',
+        marginX: '8px'
+      }}
+      />
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>

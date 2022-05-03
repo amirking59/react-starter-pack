@@ -90,7 +90,7 @@ function CollapseMenu({ item }) {
               position: 'absolute',
               right: 8,
               color: theme.palette.text.primary,
-              fontSize: '12px',
+              fontSize: '10px',
               [theme.breakpoints.down('sm')]: {
                 right: '-2px',
                 fontSize: '10px'
