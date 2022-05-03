@@ -8,10 +8,11 @@ import { TOGGLE_DARK_MODE } from 'src/store/actions.js'
 
 export default function Dashboard() {
   const theme = useTheme()
-  const isDarkMode = useSelector((state) => state.customization.isDarkMode)
   const dispatch = useDispatch()
 
-  const handleThemeChange = () => {
+  const isDarkMode = useSelector((state) => state.customization.isDarkMode)
+
+  const handleToggleDarkMode = () => {
     dispatch({ type: TOGGLE_DARK_MODE })
   }
 
@@ -21,12 +22,12 @@ export default function Dashboard() {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        pl: '9px',
+        paddingLeft: '9px',
         color: theme.palette.text.primary
       }}
     >
-      <Typography variant="caption">dark mode</Typography>
-      <Switch checked={isDarkMode} onChange={handleThemeChange} />
+      <Typography variant="caption">Dark mode</Typography>
+      <Switch checked={isDarkMode} onChange={handleToggleDarkMode} />
     </Box>
 
   )
