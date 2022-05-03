@@ -8,7 +8,7 @@ import {
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
-// import DarkMode from './DarkMode'
+import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined'
 import ProfileButton from './ProfileButton'
 
 function Header({ handleDrawerToggle }) {
@@ -30,10 +30,8 @@ function Header({ handleDrawerToggle }) {
               ...theme.typography.mediumAvatar,
               transition: 'all .2s ease-in-out',
               background: theme.palette.primary.light,
-              color: theme.palette.primary.dark,
               '&:hover': {
-                background: theme.palette.primary.dark,
-                color: theme.palette.primary.light
+                background: theme.palette.primary.dark
               }
             }}
             onClick={handleDrawerToggle}
@@ -43,6 +41,11 @@ function Header({ handleDrawerToggle }) {
           </Avatar>
         </ButtonBase>
       </Box>
+      <CloudOutlinedIcon sx={{
+        fontSize: '32px',
+        marginX: '8px'
+      }}
+      />
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { useTheme } from '@mui/material/styles'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemButton from '@mui/material/ListItemButton'
 
-import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
 import { SET_MENU_ITEM } from 'src/store/actions.js'
 
 function Item({ item }) {
@@ -27,20 +27,21 @@ function Item({ item }) {
       key={item.title}
       onClick={() => handleSelectItem(item.name)}
       sx={{
-        minHeight: 48,
+        height: 41,
         color: theme.palette.text.primary,
+        borderRadius: '9000px',
         justifyContent: leftDrawerOpened ? 'initial' : 'center',
         '&.Mui-selected, &.Mui-selected:hover': {
           background: theme.palette.primary.light,
           color: theme.palette.background.default
         },
-        px: 2.5
+        m: '8px'
       }}
     >
       <ListItemIcon
         sx={{
           minWidth: 0,
-          ml: '6px',
+          ml: '4px',
           mr: leftDrawerOpened ? 3 : 'auto',
           color: selectedItem === item.name ? theme.palette.background.default
             : theme.palette.text.primary,

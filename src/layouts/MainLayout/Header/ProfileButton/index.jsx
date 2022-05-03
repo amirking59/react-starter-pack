@@ -11,12 +11,13 @@ import Box from '@mui/material/Box'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 
 import { styled, useTheme } from '@mui/material/styles'
-import DarkMode from '../DarkMode'
+import DarkMode from './DarkMode'
 
 const Button = styled(BaseButton)(({ theme }) => ({
   padding: '8px',
   background: theme.palette.primary.light,
   borderRadius: '50000px',
+  marginRight: '8px',
 
   '&:hover': {
     '.MuiSvgIcon-root': {
@@ -39,26 +40,26 @@ function ProfileButton() {
       componentsProps={{
         tooltip: {
           sx: {
-            boxShadow: 2,
-            minWidth: '360px',
-            mr: '6px',
-            mt: '16px !important',
-            borderRadius: '12px',
-            padding: '8px 16px',
-            background: theme.palette.background.secondary.light
+            boxShadow: 1,
+            minWidth: '260px',
+            marginTop: '8px !important',
+            marginRight: '-12px',
+            borderRadius: '16px',
+            padding: '16px',
+            background: theme.palette.modal.background.main
           }
         }
       }}
       title={(
         <ClickAwayListener onClickAway={() => setOpen(false)}>
-          <Stack divider={<Divider variant="middle" />} spacing={2}>
+          <Stack divider={<Divider variant="middle" />} spacing={1.5}>
             <Typography color={theme.palette.text.primary}>HELLO amir</Typography>
             <Box
               sx={{
                 borderRadius: '12px',
-                px: '12px',
-                py: '12px',
-                background: theme.palette.background.secondary.main
+                paddingX: '12px',
+                paddingY: '12px',
+                background: theme.palette.modal.background.dark
               }}
             >
               <DarkMode />

@@ -12,21 +12,23 @@ const drawerWidth = 240
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen
+    duration: 300
   }),
   overflowX: 'hidden',
   [theme.breakpoints.down('sm')]: {
     top: '56px'
   },
+  background: theme.palette.background.primary.main,
+  border: 'none',
   top: '64px'
 })
 
 const closedMixin = (theme) => ({
   transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
+    duration: 300
   }),
+  background: theme.palette.background.primary.main,
+  border: 'none',
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
