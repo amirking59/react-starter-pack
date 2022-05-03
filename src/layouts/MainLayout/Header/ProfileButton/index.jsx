@@ -40,12 +40,12 @@ function ProfileButton() {
       componentsProps={{
         tooltip: {
           sx: {
-            boxShadow: 7,
+            boxShadow: 1,
             minWidth: '260px',
             marginTop: '8px !important',
             marginRight: '-12px',
             borderRadius: '16px',
-            padding: '12px',
+            padding: '16px',
             background: theme.palette.modal.background.main
           }
         }
