@@ -2,6 +2,7 @@ import { lazy } from 'react'
 
 // project imports
 import Dashboard from 'src/views/Dashboard'
+import AuthProvider from 'src/components/AuthProvider.js'
 
 // main layout
 import MainLayout from 'src/layouts/MainLayout/index.jsx'
@@ -18,7 +19,7 @@ const Mail = loadable(lazy(() => import('src/views/Mail').then((module) => ({
 
 const mainRoutes = {
   path: '/',
-  element: <MainLayout />,
+  element: <AuthProvider><MainLayout /></AuthProvider>,
   children: [
     {
       path: '/',

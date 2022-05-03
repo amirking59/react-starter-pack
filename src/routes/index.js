@@ -1,8 +1,9 @@
 import { useRoutes } from 'react-router-dom'
 
 // routes
-import MainRoutes from './mainRoutes'
+import mainRoutes from './mainRoutes'
+import authRoutes from './authRoutes'
 
-const Router = () => useRoutes([MainRoutes])
+const Router = () => useRoutes([mainRoutes, authRoutes])
 
 export default Router
