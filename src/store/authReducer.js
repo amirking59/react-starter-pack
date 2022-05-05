@@ -2,7 +2,7 @@
 import * as actionTypes from './actions'
 
 export const initialState = {
-  authenticated: false,
+  authenticated: true,
   token: ''
 }
 

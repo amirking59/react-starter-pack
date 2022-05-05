@@ -1,9 +1,11 @@
 import { Navigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+
+// hooks
+import useAuth from 'src/hooks/useAuth.js'
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const authenticated = useSelector((state) => state.auth.authenticated)
+  const { authenticated } = useAuth()
 
   return authenticated ? children : <Navigate to="/login" replace />
 }

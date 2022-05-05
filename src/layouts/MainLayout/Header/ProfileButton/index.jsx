@@ -11,7 +11,9 @@ import Box from '@mui/material/Box'
 import ClickAwayListener from '@mui/base/ClickAwayListener'
 
 import { styled, useTheme } from '@mui/material/styles'
+
 import DarkMode from './DarkMode'
+import Logout from './Logout.js'
 
 const Button = styled(BaseButton)(({ theme }) => ({
   padding: '8px',
@@ -64,6 +66,7 @@ function ProfileButton() {
             >
               <DarkMode />
             </Box>
+            <Logout />
           </Stack>
         </ClickAwayListener>
       )}
