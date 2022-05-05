@@ -10,6 +10,7 @@ import {
 import { IconMenu2 } from '@tabler/icons'
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined'
 import ProfileButton from './ProfileButton'
+import ChangeRole from './ChangeRole.js'
 
 function Header({ handleDrawerToggle }) {
   const theme = useTheme()
@@ -49,8 +50,8 @@ function Header({ handleDrawerToggle }) {
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         ADMIN PANEL
       </Typography>
+      <ChangeRole />
       <ProfileButton />
-      {/* <DarkMode /> */}
     </>
   )
 }

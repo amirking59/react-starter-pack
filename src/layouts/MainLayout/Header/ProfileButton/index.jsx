@@ -12,6 +12,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener'
 
 import { styled, useTheme } from '@mui/material/styles'
 
+import useAuth from 'src/hooks/useAuth.js'
 import DarkMode from './DarkMode'
 import Logout from './Logout.js'
 
@@ -30,6 +31,7 @@ const Button = styled(BaseButton)(({ theme }) => ({
 
 function ProfileButton() {
   const theme = useTheme()
+  const { activeRole } = useAuth()
   const [open, setOpen] = useState(false)
 
   return (
@@ -55,7 +57,10 @@ function ProfileButton() {
       title={(
         <ClickAwayListener onClickAway={() => setOpen(false)}>
           <Stack divider={<Divider variant="middle" />} spacing={1.5}>
-            <Typography color={theme.palette.text.primary}>HELLO amir</Typography>
+            <Typography color={theme.palette.text.primary}>
+              HELLO amir, you are
+              {` ${activeRole}`}
+            </Typography>
             <Box
               sx={{
                 borderRadius: '12px',
