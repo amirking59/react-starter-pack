@@ -5,6 +5,7 @@ import Select from '@mui/material/Select'
 import FormControl from '@mui/material/FormControl'
 
 import useAuth from 'src/hooks/useAuth.js'
+import enums from 'src/config/enums.js'
 import Box from '@mui/material/Box'
 
 function ChangeRole() {
@@ -27,7 +28,13 @@ function ChangeRole() {
     >
       <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
         <Select onChange={(e) => handleChange(e)} value={activeRole}>
-          {userRoles.map((role) => <MenuItem key={role} value={role}>{role}</MenuItem>)}
+          {
+            userRoles.map((role) => (
+              <MenuItem key={role} value={role}>
+                {enums.roles[role]}
+              </MenuItem>
+            ))
+          }
         </Select>
       </FormControl>
     </Box>

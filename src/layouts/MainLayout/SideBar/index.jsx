@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import { useSelector } from 'react-redux'
+import useAuth from 'src/hooks/useAuth.js'
 import Item from './Item'
 import Collapse from './Collapse'
 
@@ -60,15 +61,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const leftDrawerOpened = useSelector((state) => state.customization.opened)
+  const { activeRole } = useAuth()
 
   return (
     <Drawer variant="permanent" open={leftDrawerOpened}>
       <List>
+        {/* eslint-disable-next-line array-callback-return,consistent-return */}
         {menuItems.map((item, index) => {
-          if (item.children) {
-            return <Collapse item={item} key={item.name} />
+          if (item.permissions.includes(activeRole)) {
+            if (item.children) {
+              return <Collapse item={item} key={item.name} />
+            }
+            return <Item item={item} key={item.name} index={index} />
           }
-          return <Item item={item} key={item.name} index={index} />
         })}
       </List>
     </Drawer>

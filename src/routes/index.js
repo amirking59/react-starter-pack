@@ -1,16 +1,22 @@
 import { useRoutes } from 'react-router-dom'
 
 // hooks
-// import useAuth from 'src/hooks/useAuth.js'
+import useAuth from 'src/hooks/useAuth.js'
 
 // routes
-import mainRoutes from './mainRoutes'
-import authRoutes from './authRoutes'
+import adminRoutes from './adminRoutes.js'
+import userRoutes from './userRoutes.js'
+import simpleRoutes from './simpleRoutes.js'
 
 const Router = () => {
-  // const { authenticated } = useAuth()
+  const { activeRole } = useAuth()
+  const routes = [simpleRoutes]
 
-  const routes = [mainRoutes, authRoutes]
+  if (activeRole === 'ADMIN') {
+    routes.unshift(adminRoutes)
+  } else if (activeRole === 'USER') {
+    routes.unshift(userRoutes)
+  }
 
   return useRoutes(routes)
 }
