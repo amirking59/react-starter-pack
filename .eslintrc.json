@@ -23,6 +23,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/react-in-jsx-scope": 0,
         "comma-dangle": ["error", "never"],
+        "linebreak-style": 0,
         "semi": ["error", "never"]
     }
 }
